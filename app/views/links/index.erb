@@ -1,0 +1,9 @@
+<h2>Your available link's are as follows:</h2>
+<ul id="links">
+  <% @links.each do |link| %>
+  <li>
+    Title: <%= link.title %>
+    URL: <%= link.url %>
+  </li>
+  <% end %>
+</ul>
