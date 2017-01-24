@@ -1,12 +1,10 @@
+ENV["RACK_ENV"] ||= "development"
 require 'sinatra/base'
 require 'data_mapper'
 require 'dm-postgres-adapter'
 require './app/models/link'
 
-
 class BookmarkManager < Sinatra::Base
-  ENV['RACK_ENV'] ||= "development"
-
   DataMapper::Logger.new($stdout, :debug)
 
   get '/' do
