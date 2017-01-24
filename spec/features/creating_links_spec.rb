@@ -10,13 +10,11 @@ feature "Adding links" do
     title = rand(1000)
     fill_in 'url', with: url
     fill_in 'title', with: title
-    click_button 'Submit'
+    click_button 'Create Link'
 
     within 'ul#links' do
       expect(page).to have_content(url)
       expect(page).to have_content(title)
     end
-
-    Link.first(title: title, url: url).destroy
   end
 end

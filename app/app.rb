@@ -5,6 +5,7 @@ require './app/models/link'
 
 
 class BookmarkManager < Sinatra::Base
+  ENV['RACK_ENV'] ||= "development"
 
   DataMapper::Logger.new($stdout, :debug)
 
