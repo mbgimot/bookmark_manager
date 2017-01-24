@@ -1,4 +1,5 @@
 ENV["RACK_ENV"] ||= "development"
+
 require 'sinatra/base'
 require 'data_mapper'
 require 'dm-postgres-adapter'
@@ -8,9 +9,6 @@ class BookmarkManager < Sinatra::Base
   DataMapper::Logger.new($stdout, :debug)
 
   get '/' do
-    # Link.create(title: 'google', url: 'http://www.google.com')
-    # @link = Link.first(title: 'google', url: 'http://www.google.com')
-    # erb(:index)
     redirect '/links'
   end
 
