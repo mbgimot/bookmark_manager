@@ -31,9 +31,10 @@ class BookmarkManager < Sinatra::Base
     erb :'tags/search'
   end
 
-  get '/tags/bubbles' do
+  get '/tags/name' do
+    @search = params[:search_tag]
     @links = Link.all
-    erb :'tags/bubbles'
+    erb :'tags/index'
   end
 
 

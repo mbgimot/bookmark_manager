@@ -1,7 +1,7 @@
 <h2>Your available link's are as follows:</h2>
 <ul id="links">
   <% @links.each do |link| %>
-    <% if link.tags.map(&:name) == ["bubbles"] %>
+    <% if link.tags.map(&:name) == ["#{@search}"] %>
       <li>
         Title: <%= link.title %>
         URL: <%= link.url %>
