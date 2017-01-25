@@ -1,0 +1,12 @@
+<h2>Your available link's are as follows:</h2>
+<ul id="links">
+  <% @links.each do |link| %>
+    <% if link.tags.map(&:name) == ["bubbles"] %>
+      <li>
+        Title: <%= link.title %>
+        URL: <%= link.url %>
+        Tags: <%= link.tags.map(&:name) %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
