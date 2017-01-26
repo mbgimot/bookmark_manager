@@ -2,7 +2,6 @@ require 'spec_helper'
 
 feature 'sign up form' do
   scenario 'can sign up' do
-    sign_up
     expect(current_path).to eq('/links')
     expect(page).to have_content("Welcome test@test.com")
   end
