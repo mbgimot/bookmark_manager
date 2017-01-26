@@ -1,9 +1,15 @@
 require './app/app'
 
-task :upgrade do
-  DataMapper.auto_upgrade!
-end
+namespace :db do
+  desc "Non destructive upgrade"
+  task :auto_upgrade do
+    DataMapper.auto_upgrade!
+    puts "Auto-upgrade complete (no data loss)"
+  end
 
-task :migrate do
-  DataMapper.auto_migrate!
+  desc "Destructive upgrade"
+  task :auto_migrate do
+    DataMapper.auto_migrate!
+    puts "Auto-migrate complete (data was lost)"
+  end
 end
