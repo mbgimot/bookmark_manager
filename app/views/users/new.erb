@@ -1,13 +1,17 @@
 <h1> Sign Up! </h1>
 
 <form action='/signup' method='POST'>
-  <label for='title'>
+  <label for='email'>
     Email:
     <input type='text' name='email' />
   </label>
-  <label for='url'>
+  <label for='password'>
     Password:
     <input type='password' name='password' />
+    <label for='password_confirmation'>
+      Confirm Password:
+      <input type='password' name='password_conf' />
+    </label>
   </label>
   <input type='submit' value='Sign Up'>
 </form>

@@ -10,6 +10,7 @@ gem 'dm-transactions'
 gem 'rake'
 gem 'bcrypt'
 gem 'encrypted_cookie'
+gem 'sinatra-flash'
 
 group :test do
   gem 'database_cleaner'

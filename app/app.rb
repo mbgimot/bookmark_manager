@@ -1,10 +1,12 @@
 ENV["RACK_ENV"] ||= "development"
 
 require 'sinatra/base'
+require 'sinatra/flash'
 require 'encrypted_cookie'
 require_relative 'data_mapper_setup'
 
 class BookmarkManager < Sinatra::Base
+  register Sinatra::Flash
   use Rack::Session::EncryptedCookie,
     secret: 'ebb09be68821e5f929cce9f98c86efb4daee51287d42d840b388a112d7b3cda8'
 
@@ -25,13 +27,17 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/signup' do
-    user = User.create(email: params[:email], password: params[:password])
-    session[:user_id] = user.id
-    redirect '/links'
+    user = User.create(email: params[:email], password: params[:password], password_conf: params[:password_conf])
+    if user.save
+      session[:user_id] = user.id
+      redirect '/links'
+    else
+      flash[:error] = "Your passwords do not match!"
+      redirect '/users/new'
+    end
   end
 
   get '/links' do
-    current_user
     @links = Link.all
     erb(:'links/index')
   end

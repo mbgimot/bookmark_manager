@@ -18,5 +18,17 @@ def sign_up
   visit ('/')
   fill_in 'email', with: email_address
   fill_in 'password', with: password
+  fill_in 'password_conf', with: password
+  click_button 'Sign Up'
+end
+
+def sign_up_false
+  email_address = 'test@test.com'
+  password = 'password'
+  password2 = 'test'
+  visit ('/')
+  fill_in 'email', with: email_address
+  fill_in 'password', with: password
+  fill_in 'password_conf', with: password2
   click_button 'Sign Up'
 end
