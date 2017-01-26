@@ -5,6 +5,6 @@ class User
 
   property :id, Serial
   property :email, String
-  property :password, BCryptHash, length: 2000
+  property :password, BCryptHash
 
 end

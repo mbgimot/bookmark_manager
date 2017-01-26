@@ -1,10 +1,13 @@
 ENV["RACK_ENV"] ||= "development"
 
 require 'sinatra/base'
+require 'encrypted_cookie'
 require_relative 'data_mapper_setup'
 
 class BookmarkManager < Sinatra::Base
-  enable :sessions
+  use Rack::Session::EncryptedCookie,
+    secret: 'ebb09be68821e5f929cce9f98c86efb4daee51287d42d840b388a112d7b3cda8'
+    
   DataMapper::Logger.new($stdout, :debug)
 
   helpers do
