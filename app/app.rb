@@ -6,11 +6,21 @@ require_relative 'data_mapper_setup'
 class BookmarkManager < Sinatra::Base
   DataMapper::Logger.new($stdout, :debug)
 
+  before do
+    @user = User.instance
+  end
+  
   get '/' do
+    erb(:'login/sign_up')
+  end
+
+  post '/signup' do
+    @user = User.add(params[:email], params[:password])
     redirect '/links'
   end
 
   get '/links' do
+    @user
     @links = Link.all
     erb(:'links/index')
   end

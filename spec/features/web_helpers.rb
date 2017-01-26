@@ -11,3 +11,12 @@ def add_random_link
   fill_in 'tags', with: 'testtag'
   click_button 'Create Link'
 end
+
+def sign_up
+  email_address = 'test@test.com'
+  password = 'test'
+  visit ('/')
+  fill_in 'email', with: email_address
+  fill_in 'password', with: password
+  click_button 'Sign Up'
+end
