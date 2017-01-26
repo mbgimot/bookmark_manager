@@ -7,17 +7,21 @@ require_relative 'data_mapper_setup'
 class BookmarkManager < Sinatra::Base
   use Rack::Session::EncryptedCookie,
     secret: 'ebb09be68821e5f929cce9f98c86efb4daee51287d42d840b388a112d7b3cda8'
-    
+
   DataMapper::Logger.new($stdout, :debug)
 
   helpers do
     def current_user
-      @current_user ||= User.first(session[:user_id])
+      @current_user ||= User.get(session[:user_id])
     end
   end
 
   get '/' do
-    erb(:'login/sign_up')
+    redirect '/users/new'
+  end
+
+  get '/users/new' do
+    erb(:'users/new')
   end
 
   post '/signup' do
@@ -27,8 +31,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/links' do
-    @user = User.first
-    @user_email = @user.email
+    current_user
     @links = Link.all
     erb(:'links/index')
   end
