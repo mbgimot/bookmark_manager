@@ -16,4 +16,22 @@ feature "Adding tags" do
       expect(link.tags.map(&:name)).to include('education')
     end
   end
+
+  scenario "adds multiple tags to link" do
+    visit ('/links/new')
+    url = "school.com"
+    title = "School"
+    tag = 'education, learning'
+    fill_in 'url', with: url
+    fill_in 'title', with: title
+    fill_in 'tags', with: tag
+    click_button 'Create Link'
+
+    within 'ul#links' do
+      link = Link.first
+      expect(link.tags.map(&:name)).to include('education')
+      expect(link.tags.map(&:name)).to include('learning')
+    end
+
+  end
 end
