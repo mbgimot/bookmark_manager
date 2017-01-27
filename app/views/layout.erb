@@ -10,7 +10,7 @@
       Welcome, <%= current_user.email %>
     <% end %>
     <% if flash[:errors] && !flash[:errors].empty? %>
-      Sorry, there was a problem with your sign up:
+      Sorry, there was a problem:
       <ul id="errors">
         <% flash[:errors].each do |error| %>
         <li>

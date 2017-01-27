@@ -11,6 +11,7 @@ gem 'rake'
 gem 'bcrypt'
 gem 'encrypted_cookie'
 gem 'sinatra-flash'
+gem 'pry'
 
 group :test do
   gem 'database_cleaner'

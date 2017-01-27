@@ -4,6 +4,7 @@ require 'sinatra/base'
 require 'sinatra/flash'
 require 'encrypted_cookie'
 require_relative 'data_mapper_setup'
+require 'pry'
 
 class BookmarkManager < Sinatra::Base
   register Sinatra::Flash
@@ -19,7 +20,21 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/' do
-    redirect '/users/new'
+    flash[:errors]
+    erb :index
+    #redirect '/users/new'
+  end
+
+  post '/signin' do
+    #binding.pry
+    user = User.authenticate(params[:email], params[:password])
+    if user
+      session[:user_id] = user.id
+      redirect '/links'
+    else
+      flash[:errors] = ['The email or password is incorrect.']
+      redirect '/'
+    end
   end
 
   get '/users/new' do

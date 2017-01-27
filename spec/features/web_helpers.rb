@@ -15,7 +15,7 @@ end
 def sign_up
   email_address = 'test@test.com'
   password = 'test'
-  visit ('/')
+  visit ('/users/new')
   fill_in 'email', with: email_address
   fill_in 'password', with: password
   fill_in 'password_conf', with: password
@@ -26,7 +26,7 @@ def sign_up_false
   email_address = 'test@test.com'
   password = 'password'
   password2 = 'test'
-  visit ('/')
+  visit ('/users/new')
   fill_in 'email', with: email_address
   fill_in 'password', with: password
   fill_in 'password_conf', with: password2
@@ -36,7 +36,7 @@ end
 def sign_up_empty_email
   email_address = ''
   password = 'password'
-  visit ('/')
+  visit ('/users/new')
   fill_in 'email', with: email_address
   fill_in 'password', with: password
   fill_in 'password_conf', with: password
@@ -50,9 +50,18 @@ end
 def sign_up_with_invalid_email
   email_address = 'test@test'
   password = 'test'
-  visit ('/')
+  visit ('/users/new')
   fill_in 'email', with: email_address
   fill_in 'password', with: password
   fill_in 'password_conf', with: password
   click_button 'Sign Up'
+end
+
+def sign_in
+  email_address = 'test@test.com'
+  password = 'test'
+  visit ('/')
+  fill_in 'email', with: email_address
+  fill_in 'password', with: password
+  click_button 'Sign In'
 end

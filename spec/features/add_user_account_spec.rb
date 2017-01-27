@@ -41,7 +41,7 @@ feature 'sign up form' do
         expect{sign_up_empty_email}.to change{User.count}.by(0)
       end
       scenario "not to have invalid format" do
-        #expect(find_field('email').value).to match([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$)
+        #expect { sign_up(email: "invalid@email") }.not_to change(User, :count)
         expect{sign_up_with_invalid_email}.to change{User.count}.by(0)
       end
       context "unique email" do
