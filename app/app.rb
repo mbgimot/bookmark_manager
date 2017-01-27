@@ -23,6 +23,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/users/new' do
+    session[:email] ? @email_res = session[:email] : nil
     erb(:'users/new')
   end
 
@@ -32,6 +33,7 @@ class BookmarkManager < Sinatra::Base
       session[:user_id] = user.id
       redirect '/links'
     else
+      session[:email] = params[:email]
       flash[:error] = "Your passwords do not match!"
       redirect '/users/new'
     end
