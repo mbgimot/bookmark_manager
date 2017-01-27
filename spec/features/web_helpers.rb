@@ -32,3 +32,17 @@ def sign_up_false
   fill_in 'password_conf', with: password2
   click_button 'Sign Up'
 end
+
+def sign_up_empty_email
+  email_address = ''
+  password = 'password'
+  visit ('/')
+  fill_in 'email', with: email_address
+  fill_in 'password', with: password
+  fill_in 'password_conf', with: password
+  click_button 'Sign Up'
+end
+
+def sign_up_twice
+  2.times {sign_up}
+end
