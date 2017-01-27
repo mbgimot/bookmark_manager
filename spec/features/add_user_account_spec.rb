@@ -43,6 +43,10 @@ feature 'sign up form' do
       scenario "should be unique" do
         expect{sign_up_twice}.to change{User.count}.by(1)
       end
+      scenario "not to have invalid format" do
+        #expect(find_field('email').value).to match([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$)
+        expect{sign_up_with_invalid_email}.to change{User.count}.by(0)
+      end
     end
   end
 
