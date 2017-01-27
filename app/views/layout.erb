@@ -9,8 +9,14 @@
     <% if current_user %>
       Welcome, <%= current_user.email %>
     <% end %>
-    <% if flash[:error] %>
-      <%=flash[:error]%>
+    <% if flash[:errors] && !flash[:errors].empty? %>
+      Sorry, there was a problem with your sign up:
+      <ul id="errors">
+        <% flash[:errors].each do |error| %>
+        <li>
+          <%=error%>
+        </li>
+        <%end%>
     <%end%>
     <%= yield %>
   </body>

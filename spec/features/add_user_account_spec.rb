@@ -27,7 +27,7 @@ feature 'sign up form' do
 
       scenario "throws an error message" do
         sign_up_false
-        expect(page).to have_content("Your passwords do not match!")
+        expect(page).to have_content("Password does not match the confirmation")
       end
 
       scenario "shows original email address in sign up form" do
@@ -40,12 +40,18 @@ feature 'sign up form' do
       scenario "is empty" do
         expect{sign_up_empty_email}.to change{User.count}.by(0)
       end
-      scenario "should be unique" do
-        expect{sign_up_twice}.to change{User.count}.by(1)
-      end
       scenario "not to have invalid format" do
         #expect(find_field('email').value).to match([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$)
         expect{sign_up_with_invalid_email}.to change{User.count}.by(0)
+      end
+      context "unique email" do
+        scenario "should be unique" do
+          expect{sign_up_twice}.to change{User.count}.by(1)
+        end
+        scenario "non unique email throws error" do
+          sign_up_twice
+          expect(page).to have_content("Email is already taken")
+        end
       end
     end
   end
